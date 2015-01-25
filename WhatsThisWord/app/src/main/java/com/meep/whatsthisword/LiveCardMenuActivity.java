@@ -2,6 +2,7 @@ package com.meep.whatsthisword;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ public class LiveCardMenuActivity extends Activity {
 
     private static final int SPEECH_REQUEST = 0;
     private String spokenText;
+    public String SPOKEN_TEXT = "com.meep.whatsthisword.spokenText";
 
     public String getSpokenText(){
         return spokenText;
@@ -37,14 +39,14 @@ public class LiveCardMenuActivity extends Activity {
         }
         //spokenText = "meep";
         Intent intent = new Intent(this, DisplayWordActivity.class);
-        intent.putExtra("spokenText", spokenText);
+        intent.putExtra(SPOKEN_TEXT, spokenText);
         startActivity(intent);
         super.onActivityResult(requestCode, resultCode, data);
 
     }
     @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    public void onCreate() {
+        super.onCreate();
         // Open the options menu right away.
         displaySpeechRecognizer();
     }
